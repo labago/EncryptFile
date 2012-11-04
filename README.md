@@ -1,0 +1,1 @@
+This is a file encryption program (both encrypt and decrypt files included). All you need to do is give it a filename as an argument and it will output an encrytped version of that file. 
