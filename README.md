@@ -4,10 +4,10 @@ This is intended to be used with Python 2.7 (Any other version is not gauranteed
 
 Example
 
-"python encrypt.py test.txt"
+<code>python encrypt.py test.txt</code>
 
 will output a file called "encrypt_output.txt". In order to decrypt this file do this:
 
-"python decrypt.py encrypt_output.txt"
+<code>python decrypt.py encrypt_output.txt</code>
 
 And this will output a file called "decrypt_output.txt" with the original file contents intact, just change the file name back to what it was
