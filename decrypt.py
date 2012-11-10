@@ -1,7 +1,7 @@
 import sys
 import string
 
-print 'Reading file...'
+print 'Decrypting file...'
 
 try:
 	the_file = sys.argv[1]
@@ -33,5 +33,9 @@ f = open('decrypt_output.'+extension,'wb')
 # decrypt
 for x in bytes:
 	value = ord(x)
-	f.write(chr(value*2))
+	if value == 0:
+		f.write(chr(255))
+	else:
+		f.write(chr(value-1))
 f.close()
+print 'File Decryption Complete'
