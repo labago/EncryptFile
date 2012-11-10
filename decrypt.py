@@ -16,6 +16,7 @@ extension = parts[len(parts)-1]
 
 bytes = []
 
+# try opening the file, if you can, put all the bytes into a large array
 try:
 	with open(the_file, 'rb') as f:
 		while 1:
