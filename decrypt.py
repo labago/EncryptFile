@@ -1,6 +1,21 @@
 import sys
 import string
 
+def unrotate(times, amount, value, limit):
+	temp = value
+	the_amount = amount
+	while times > 0:
+		while the_amount > 0:	
+			if temp == 0:
+				temp = limit
+				the_amount -= 1
+			else:
+				temp -= 1
+				the_amount -= 1
+		times -= 1
+		the_amount = amount
+	return temp
+
 print 'Decrypting file...'
 
 try:
@@ -33,10 +48,7 @@ f = open('decrypt_output.'+extension,'wb')
 
 # decrypt
 for x in bytes:
-	value = ord(x)
-	if value == 0:
-		f.write(chr(255))
-	else:
-		f.write(chr(value-1))
+	value = unrotate(1, 2, ord(x), 255)
+	f.write(chr(value))
 f.close()
 print 'File Decryption Complete'
