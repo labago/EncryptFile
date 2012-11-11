@@ -22,7 +22,7 @@ print 'Decrypting file...'
 
 try:
 	the_file = sys.argv[1]
-except (RuntimeError, TypeError, NameError, ValueError):
+except Exception:
 	print "You must specify a file to encrypt"
 	error = true
 
