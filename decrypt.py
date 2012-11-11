@@ -1,5 +1,7 @@
 import sys
 import string
+import time
+import random
 
 def unrotate(times, amount, value, limit):
 	temp = value
@@ -30,7 +32,6 @@ parts = the_file.split(".")
 extension = parts[len(parts)-1]
 
 file_found = True
-
 # try opening the file, if you can, put all the bytes into a large array
 try:
 	f = open(the_file, 'rb')
@@ -42,6 +43,7 @@ bytes = []
 
 if file_found:
 	while 1:
+		time.sleep(.0001)
 		byte_s = f.read(1)
 		if not byte_s:
 			break
@@ -49,12 +51,14 @@ if file_found:
 		bytes.append(byte)
 	f.close()
 
-# output file with whatever file extension we are dealing with.
-f = open('decrypt_output.'+extension,'wb')
+	# output file with whatever file extension we are dealing with.
+	f = open('decrypt_output.'+extension,'wb')
 
-# decrypt
-for x in bytes:
-	value = unrotate(1, 2, ord(x), 255)
-	f.write(chr(value))
-f.close()
-print 'File Decryption Complete'
+	key = ord(bytes.pop(0))
+
+	# decrypt
+	for x in bytes:
+		value = unrotate(1, key, ord(x), 255)
+		f.write(chr(value))
+	f.close()
+	print 'File Decryption Complete'
