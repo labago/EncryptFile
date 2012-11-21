@@ -2,6 +2,8 @@ import sys
 import string
 import time
 import random
+from Tkinter import *
+import Tkinter,tkFileDialog
 
 def unrotate(times, amount, value, limit):
 	temp = value
@@ -20,26 +22,32 @@ def unrotate(times, amount, value, limit):
 
 print 'Decrypting file...'
 
-try:
-	the_file = sys.argv[1]
-except Exception:
-	print "You must specify a file to encrypt"
-	error = true
+root = Tkinter.Tk()
+the_file = tkFileDialog.askopenfile(parent=root,mode='rb',title='Choose a file')
+if the_file == None:
+	print "You must specify a file to decrypt"
+else:
+	# try:
+	# 	the_file = sys.argv[1]
+	# except Exception:
+	# 	print "You must specify a file to encrypt"
+	# 	error = true
 
-parts = the_file.split(".")
+	parts = the_file.name.split(".")
+	print "Name:", parts
 
-# find the type of file extension
-extension = parts[len(parts)-1]
+	# find the type of file extension
+	extension = parts[len(parts)-1]
 
-file_found = True
-# try opening the file, if you can, put all the bytes into a large array
-try:
-	f = open(the_file, 'rb')
-except Exception:
-	file_found = False
-	print "File with that name was not found"
+	file_found = True
+	# try opening the file, if you can, put all the bytes into a large array
+	try:
+		f = open(the_file.name, 'rb')
+	except Exception:
+		file_found = False
+		print "File with that name was not found"
 
-bytes = []
+	bytes = []
 
 if file_found:
 	while 1:
@@ -51,8 +59,11 @@ if file_found:
 		bytes.append(byte)
 	f.close()
 
+	root = Tkinter.Tk()
+	fileName = tkFileDialog.asksaveasfilename(parent=root,title="Save the image as...")
+
 	# output file with whatever file extension we are dealing with.
-	f = open('decrypt_output.'+extension,'wb')
+	f = open(fileName,'wb')
 
 	key = ord(bytes.pop(0))
 
