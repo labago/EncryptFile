@@ -1,0 +1,10 @@
+Exception in Tkinter callback
+Traceback (most recent call last):
+  File "Tkinter.pyc", line 1410, in __call__
+  File "run.py", line 69, in encrypt
+UnboundLocalError: local variable 'file_found' referenced before assignment
+Exception in Tkinter callback
+Traceback (most recent call last):
+  File "Tkinter.pyc", line 1410, in __call__
+  File "run.py", line 128, in decrypt
+UnboundLocalError: local variable 'file_found' referenced before assignment
